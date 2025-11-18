@@ -6,7 +6,7 @@ public class HitBall : MonoBehaviour
     private Rigidbody rb;
     public Vector3 forceDirection;
     public Vector3 force;
-    public SphereCollider targetCollider;
+    public MeshCollider targetCollider;
 
     // This function will push the ball
     public void Push(InputAction.CallbackContext context)
