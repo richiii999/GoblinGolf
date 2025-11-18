@@ -4,7 +4,8 @@ using UnityEngine.InputSystem;
 public class HitBall : MonoBehaviour
 {
     private Rigidbody rb;
-    private Vector3 forceDirection;
+    public Vector3 forceDirection;
+    public Vector3 force;
     public SphereCollider targetCollider;
 
     // This function will push the ball
@@ -36,7 +37,7 @@ public class HitBall : MonoBehaviour
                 forceDirection.Normalize();
 
                 Debug.Log("Hit: " + hit.collider.name);
-                rb.AddForce(1.0f * forceDirection, ForceMode.VelocityChange);    
+                rb.AddForce(3.0f * forceDirection, ForceMode.VelocityChange);    
             }
         }
     }
