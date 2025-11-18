@@ -7,35 +7,64 @@
             "id": "4196a5e8-b620-4c5e-85dc-e0edc9aeef04",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "Aim",
                     "type": "Button",
-                    "id": "fa5a5810-b131-4354-a87a-174d28fa6421",
+                    "id": "1307e2fa-33b4-457a-8fe2-d209a2c202d7",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Shoot",
+                    "type": "Button",
+                    "id": "a30ca7f3-4381-4f05-b481-7592d8f101d3",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PointerPosition",
+                    "type": "Value",
+                    "id": "96fe506c-f646-4c19-a49f-efd7b720e3bb",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
                 {
                     "name": "",
-                    "id": "ca3fabe8-6a33-4df2-8082-28e10805be0c",
+                    "id": "a497f5b0-8cc0-4307-b3c6-e5d43755275b",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "Aim",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "e7d07653-6c83-4de2-9fb6-e0cb1525fe5a",
-                    "path": "",
+                    "id": "40a84df2-801b-432a-b136-b9f9f05a617d",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d6bc1a79-1c98-4ca1-8c4d-b6183d23d2ac",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PointerPosition",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

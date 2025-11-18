@@ -7,35 +7,44 @@
             "id": "4196a5e8-b620-4c5e-85dc-e0edc9aeef04",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "Aim",
                     "type": "Button",
-                    "id": "fa5a5810-b131-4354-a87a-174d28fa6421",
+                    "id": "61409978-0d73-4db7-b661-a73d82a5577e",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "PointerPosition",
+                    "type": "Value",
+                    "id": "8bd0045f-2d75-4c0e-8969-6dc7756b78bc",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
                 {
                     "name": "",
-                    "id": "ca3fabe8-6a33-4df2-8082-28e10805be0c",
+                    "id": "11267eef-95c0-4f57-a12b-1804a9508a3c",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "Aim",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "e7d07653-6c83-4de2-9fb6-e0cb1525fe5a",
-                    "path": "",
+                    "id": "ef337c70-2f32-48b5-9fe0-94a1d649949d",
+                    "path": "<Mouse>/position",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "PointerPosition",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
