@@ -14,6 +14,8 @@ public class LineForce : MonoBehaviour
     private bool isAiming;
     private Rigidbody rb;
 
+    public GameObject D20_Faces;
+    private int currentNumber;
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -142,8 +144,22 @@ public class LineForce : MonoBehaviour
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         isIdle = true;
+        readDie();
     }
+    public void readDie()
+    {
+        if (Physics.Raycast(transform.position, Vector3.up, out RaycastHit hit, 2f))
+        {
+            string face = hit.collider.gameObject.name;
 
+            if (face.StartsWith("Face"))
+            {
+                currentNumber = int.Parse(face.Substring(4));
+                Debug.Log(currentNumber);
+            }
+
+        }
+    }
     // Casts a ray from the camera through the pointer position (mouse cursor)
     // to find a point in the game world, typically on a collider
     // returns the hit point if successful, or null if nothing is hit

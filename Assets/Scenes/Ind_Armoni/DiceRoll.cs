@@ -4,6 +4,7 @@ public class DiceRoll : MonoBehaviour
 {
     public GameObject D20_Faces;
     private int currentNumber;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -12,6 +13,11 @@ public class DiceRoll : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+        //readDie();
+    }
+
+    public void readDie()
     {
         if (Physics.Raycast(transform.position, Vector3.up, out RaycastHit hit, 2f))
         {
