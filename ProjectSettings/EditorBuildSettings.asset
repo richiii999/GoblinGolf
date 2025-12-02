@@ -9,10 +9,10 @@ EditorBuildSettings:
     path: Assets/Scenes/UI/MainMenu.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/Scenes/Ind_Richard/HoleTest/HoleTest1.unity
+    path: Assets/Scenes/Ind_Richard/HoleTest1.unity
     guid: ee6851d704b1e26418564ad542c30734
   - enabled: 1
-    path: Assets/Scenes/Ind_Richard/HoleTest/HoleTest2.unity
+    path: Assets/Scenes/Ind_Richard/HoleTest2.unity
     guid: e62983b986c8e3b43a3bec175d2a3d82
   - enabled: 1
     path: Assets/Scenes/Ind_Richard/3DTilemapTest/3DTileTest.unity
