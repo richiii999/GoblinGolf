@@ -15,6 +15,7 @@ public class LineForce : MonoBehaviour
     private Rigidbody rb;
 
     public ScoreManager ScoreHandler;
+    public DiceNumber DiceHandler;
     public GameObject D20_Faces;
     private int currentNumber;
     private int stroke;
@@ -165,7 +166,8 @@ public class LineForce : MonoBehaviour
             if (face.StartsWith("Face"))
             {
                 currentNumber = int.Parse(face.Substring(4));
-                Debug.Log(currentNumber);
+                //Debug.Log(currentNumber);
+                DiceHandler.UpdateDice(currentNumber);
             }
 
         }
