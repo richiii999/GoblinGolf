@@ -539,7 +539,6 @@ GameObject:
   - component: {fileID: 8264988141649766245}
   - component: {fileID: 2092729657020219638}
   - component: {fileID: 7084838874688653003}
-  - component: {fileID: 4602822854383525782}
   - component: {fileID: 6887452801212793007}
   - component: {fileID: 7800894104837541162}
   m_Layer: 0
@@ -686,21 +685,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
---- !u!114 &4602822854383525782
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2892836467430101007}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e951cea1b8efb14b935a69a68db9b2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  forceDirection: {x: 0, y: 0, z: 0}
-  force: {x: 0, y: 0, z: 0}
-  targetCollider: {fileID: 2092729657020219638}
 --- !u!114 &6887452801212793007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -727,21 +711,13 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4602822854383525782}
-        m_TargetAssemblyTypeName: HitBall, Assembly-CSharp
-        m_MethodName: Push
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: fa5a5810-b131-4354-a87a-174d28fa6421
-    m_ActionName: 'Player/New action[/Mouse/leftButton]'
+      m_Calls: []
+    m_ActionId: 61409978-0d73-4db7-b661-a73d82a5577e
+    m_ActionName: 'Player/Aim[/Mouse/leftButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8bd0045f-2d75-4c0e-8969-6dc7756b78bc
+    m_ActionName: 'Player/PointerPosition[/Mouse/position]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

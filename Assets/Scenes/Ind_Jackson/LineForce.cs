@@ -14,8 +14,10 @@ public class LineForce : MonoBehaviour
     private bool isAiming;
     private Rigidbody rb;
 
+    public ScoreManager ScoreHandler;
     public GameObject D20_Faces;
     private int currentNumber;
+    private int stroke;
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -119,6 +121,7 @@ public class LineForce : MonoBehaviour
     {
         isAiming = false; // Exit aiming state
         lineRenderer.enabled = false; // Hide the line
+        stroke++; // Update the score/stroke
 
         // Makes shot horizontal by flattening the world point to amtch the ball's Y position
         Vector3 horizontalWorldPoint = new Vector3(worldPoint.x, transform.position.y, worldPoint.z);
@@ -134,6 +137,8 @@ public class LineForce : MonoBehaviour
 
         // Ball is no longer idle
         isIdle = false;
+
+        ScoreHandler.UpdateScore(stroke);
     }
 
     private void DrawLine(Vector3 worldPoint)
