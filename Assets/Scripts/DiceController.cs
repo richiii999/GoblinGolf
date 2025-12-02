@@ -1,7 +1,8 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class LineForce : MonoBehaviour
+public class DiceController : MonoBehaviour
 {
     [SerializeField] private float shotPower;
     [SerializeField] private float stopVelocity = .05f;
@@ -15,9 +16,9 @@ public class LineForce : MonoBehaviour
     private Rigidbody rb;
 
     public ScoreManager ScoreHandler;
-    public GameObject D20_Faces;
     private int currentNumber;
     private int stroke;
+    private bool wasIdle = true;
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -48,15 +49,20 @@ public class LineForce : MonoBehaviour
 
     private void Update()
     {
-        // If the velocity is a small number stop the Die from moving
-        if (rb.linearVelocity.magnitude < stopVelocity)
+        // Checks if currently idle by checking if the linear velocity is less than the stopVelocity
+        bool currentlyIdle = rb.linearVelocity.magnitude < stopVelocity;
+
+        // If the dice is not moving and it was moving before we call Stop()
+        if (currentlyIdle && !wasIdle)
         {
             Stop();
         }
-        else
-        {
-            isIdle = false;
-        }
+        
+        // Sets the isIdle variable to what the currently idle variable is
+        // This updates isIdle every frame for reference for other functions
+        // We also set the wasIdle variable every frame
+        isIdle = currentlyIdle;
+        wasIdle = currentlyIdle;
 
         ProcessAim();
     }
@@ -123,7 +129,7 @@ public class LineForce : MonoBehaviour
         lineRenderer.enabled = false; // Hide the line
         stroke++; // Update the score/stroke
 
-        // Makes shot horizontal by flattening the world point to amtch the ball's Y position
+        // Makes shot horizontal by flattening the world point to match the ball's Y position
         Vector3 horizontalWorldPoint = new Vector3(worldPoint.x, transform.position.y, worldPoint.z);
         
         // Compute direction from ball to aim point
@@ -143,14 +149,17 @@ public class LineForce : MonoBehaviour
 
     private void DrawLine(Vector3 worldPoint)
     {
+        // Set clamped point so the line doesn't hit the wall/floor/etc
+        Vector3 clampedPoint = new Vector3(worldPoint.x, transform.position.y, worldPoint.z);
         // Draw the line from ball to cursor target
-        Vector3[] positions = { transform.position, worldPoint }; // Start the ball's position and the end is the aim point
+        Vector3[] positions = { transform.position, clampedPoint }; // Start the ball's position and the end is the aim point
         lineRenderer.SetPositions(positions); // Update LineRenderer positions
         lineRenderer.enabled = true; // Ensure line is visible
     }
 
     private void Stop()
     {
+        Debug.Log("Stopped");
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         isIdle = true;
