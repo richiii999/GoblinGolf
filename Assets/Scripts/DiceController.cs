@@ -174,7 +174,8 @@ public class DiceController : MonoBehaviour
             if (face.StartsWith("Face"))
             {
                 currentNumber = int.Parse(face.Substring(4));
-                Debug.Log(currentNumber);
+                //Debug.Log(currentNumber);
+                DiceHandler.UpdateDice(currentNumber);
             }
 
         }
