@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -8,90 +9,80 @@ public class PhaseAbility : MonoBehaviour, IOpacity
 {
     private Rigidbody rb;
     public float stopThreshold;
-    private MeshCollider sc;
     private SphereCollider sphereCollider;
-    private bool phaseOn;
-    private string Tag;
+    private bool phaseOn, routOn;
+    private GameObject[] taggedObjects;
+    private List<Material> oldMaterials;
+    private Material newMaterial;
 
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        LowerOpacityByTag("Phase Object");
-        sc = GetComponent<MeshCollider>();
+        oldMaterials = new List<Material>();
         rb = GetComponent<Rigidbody>();
         sphereCollider = GetComponent<SphereCollider>();
+        newMaterial = GameObject.FindGameObjectWithTag("Wall").GetComponent<Renderer>().material;
         phaseOn = true;
+        routOn = true;
+        PhaseOnByTag("Phase Object");
     }
 
-    // Update is called once per frame
+    // Update is called once per frame to detect if ball has stopped
     void Update()
     {
-        StartCoroutine(BallStopped());
-    }
-    void OnTriggerEnter(Collider other)
-    {
-        if (phaseOn)
+        if (routOn)
         {
-            if (other.gameObject.CompareTag("Phase Object"))
-            {
-                other.enabled = false;
-                StartCoroutine(ColliderBackOn(other));
-            }
+            StartCoroutine(BallStopped());
         }
     }
 
-    private IEnumerator ColliderBackOn(Collider other)
-    {
-        yield return new WaitForSeconds(5.0f);
-        other.enabled = true;
-    }
 
+    // Checks if ball has stopped to reenable collision and turn off phase
     private IEnumerator BallStopped()
     {
+        routOn = false;
         if (phaseOn){
             yield return new WaitForSeconds(5.0f);
             if (rb.linearVelocity.magnitude < stopThreshold)
             {
                 phaseOn = false;
-                IncreaseOpacityByTag("Phase Object");
+                PhaseOffByTag("Phase Object");
                 sphereCollider.isTrigger = false;
                 yield return new WaitForSeconds(2.0f);
                 sphereCollider.isTrigger = true;
             }
         }
+        routOn = true;
     }
 
-    public void LowerOpacityByTag(string str)
+    //Handles that phase on aspect of the ability
+    public void PhaseOnByTag(string str)
     {
-        GameObject[] taggedObjects = GameObject.FindGameObjectsWithTag(str);
-
+        taggedObjects = GameObject.FindGameObjectsWithTag(str);
+        
         foreach(GameObject obj in taggedObjects)
         {
             MeshRenderer renderer = obj.GetComponent<MeshRenderer>();
-                if (renderer != null && renderer.material != null)
-                {
-                    Debug.Log("In Opacity");
-                    Color currentColor = renderer.material.color;
-                    renderer.material.color = new Color(currentColor.r, currentColor.g, currentColor.b, 0.5f);
-                }
+            oldMaterials.Add(renderer.material);
+            renderer.material = newMaterial;
+            Collider collid = obj.GetComponent<Collider>();
+            collid.enabled = false;      
         }
     }
 
-    public void IncreaseOpacityByTag(string str)
+    //Handles that phase off aspect of the ability
+    public void PhaseOffByTag(string str)
     {
-        GameObject[] taggedObjects = GameObject.FindGameObjectsWithTag(str);
-
+        int i = 0;
         foreach(GameObject obj in taggedObjects)
         {
             MeshRenderer renderer = obj.GetComponent<MeshRenderer>();
-                if (renderer != null && renderer.material != null)
-                {
-                    Debug.Log("In Opacity");
-                    Color currentColor = renderer.material.color;
-                    renderer.material.color = new Color(currentColor.r, currentColor.g, currentColor.b, 1);
-                }
+            renderer.material = oldMaterials[i];
+            Collider collid = obj.GetComponent<Collider>();
+            collid.enabled = true;
+            i++;
         }
     }
 }

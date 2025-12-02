@@ -21,6 +21,7 @@ public class LineForce : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         lineRenderer.enabled = false;
         isAiming = false;
+        isIdle = true;
     }
 
     private void Start()
@@ -49,6 +50,10 @@ public class LineForce : MonoBehaviour
         if (rb.linearVelocity.magnitude < stopVelocity)
         {
             Stop();
+        }
+        else
+        {
+            isIdle = false;
         }
 
         ProcessAim();
