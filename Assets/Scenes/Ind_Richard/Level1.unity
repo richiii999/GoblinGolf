@@ -2688,7 +2688,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8235959373571526819, guid: 0edbc4e38b9e526428dc51241391d3f4, type: 3}
       propertyPath: nextHole
-      value: MainMenu
+      value: EasyLevel1
       objectReference: {fileID: 0}
     - target: {fileID: 8235959373571526819, guid: 0edbc4e38b9e526428dc51241391d3f4, type: 3}
       propertyPath: waitTime

@@ -5,7 +5,7 @@ public class ButtonHandler : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadScene("PhaseAbilityTest");
+        SceneManager.LoadScene("Level1");
     }
 
     public void QuitGame()
@@ -13,4 +13,10 @@ public class ButtonHandler : MonoBehaviour
         Debug.Log("Quit was pressed");
         Application.Quit();
     }
+
+    public void displayMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
 }
