@@ -3,16 +3,13 @@ using UnityEngine;
 public class ClampPlane : MonoBehaviour
 {
     public Transform dieTransform;
-    private Vector3 diePlaneClampedRotation = Vector3.zero;
-    private float startingY;
-    
+    private Vector3 diePlaneClampedRotation = Vector3.zero;    
     void Start()
     {
         if (dieTransform == null && transform.parent != null)
         {
             dieTransform = transform.parent;
         }
-        startingY = transform.position.y;
     }
 
     void Update()
@@ -21,7 +18,7 @@ public class ClampPlane : MonoBehaviour
         {
             Vector3 targetPos = dieTransform.position;
             // Keep original Y
-            transform.position = new Vector3(targetPos.x, startingY, targetPos.z);
+            transform.position = new Vector3(targetPos.x, targetPos.y, targetPos.z);
 
             transform.rotation = Quaternion.Euler(diePlaneClampedRotation);
         }
