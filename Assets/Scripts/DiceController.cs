@@ -9,6 +9,9 @@ public class DiceController : MonoBehaviour
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private PlayerInput playerInput;
     [SerializeField] private new GameObject gameObject;
+    [SerializeField] private bool stopped = false;
+    [SerializeField] private bool abilityActivated = false;
+    
 
     private InputAction aimAction, pointerAction;
 
@@ -142,6 +145,8 @@ public class DiceController : MonoBehaviour
 
         // apply the force to shoot the ball (negative direction makes it shoot opposite of line)
         rb.AddForce(shotPower * strength * -direction);
+        stopped = true;
+        abilityActivated = true;
 
         // Ball is no longer idle
         isIdle = false;
@@ -165,9 +170,13 @@ public class DiceController : MonoBehaviour
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         isIdle = true;
-        gameObject.GetComponent<Float>().AbilityOff();
-        gameObject.GetComponent<PhaseAlt>().Phase(false);
-        gameObject.GetComponent<ResizeBall>().returnToBase();
+        if (stopped)
+        {
+            stopped = false;
+            gameObject.GetComponent<Float>().AbilityOff();
+            gameObject.GetComponent<PhaseAlt>().Phase(false);
+            gameObject.GetComponent<ResizeBall>().returnToBase();
+        }
         readDie();
     }
     public void readDie()
@@ -181,29 +190,32 @@ public class DiceController : MonoBehaviour
                 currentNumber = int.Parse(face.Substring(4));
                 
                 //To determine Ability Use
-                if (currentNumber <= 4)
+                if(abilityActivated)
                 {
-                    gameObject.GetComponent<PhaseAlt>().SetPhaseFlag("PhaseObjectBad");
-                    gameObject.GetComponent<PhaseAlt>().Phase(true);
+                    if (currentNumber <= 4)
+                    {
+                        gameObject.GetComponent<PhaseAlt>().SetPhaseFlag("PhaseObjectBad");
+                        gameObject.GetComponent<PhaseAlt>().Phase(true);
+                    }
+                    if (currentNumber >= 5 && currentNumber <= 8)
+                    {
+                        gameObject.GetComponent<ResizeBall>().Grow();
+                    }
+                    if (currentNumber >= 9 && currentNumber <= 12)
+                    {
+                        gameObject.GetComponent<Float>().AbilityOn();
+                    }
+                    if (currentNumber >= 13 && currentNumber <= 16)
+                    {
+                        gameObject.GetComponent<ResizeBall>().Shrink();
+                    }
+                    if (currentNumber >= 17 && currentNumber <= 20)
+                    {
+                        gameObject.GetComponent<PhaseAlt>().SetPhaseFlag("Phase Object");
+                        gameObject.GetComponent<PhaseAlt>().Phase(true);
+                    }
+                    abilityActivated = false;
                 }
-                if (currentNumber >= 5 && currentNumber <= 8)
-                {
-                    gameObject.GetComponent<ResizeBall>().Grow();
-                }
-                if (currentNumber >= 9 && currentNumber <= 12)
-                {
-                    gameObject.GetComponent<Float>().AbilityOn();
-                }
-                if (currentNumber >= 13 && currentNumber <= 16)
-                {
-                    gameObject.GetComponent<ResizeBall>().Shrink();
-                }
-                if (currentNumber >= 17 && currentNumber <= 20)
-                {
-                    gameObject.GetComponent<PhaseAlt>().SetPhaseFlag("Phase Object");
-                    gameObject.GetComponent<PhaseAlt>().Phase(true);
-                }
-
                 //Debug.Log(currentNumber);
                 DiceHandler.UpdateDice(currentNumber);
             }
