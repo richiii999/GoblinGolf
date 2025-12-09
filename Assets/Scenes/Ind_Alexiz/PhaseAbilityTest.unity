@@ -1765,9 +1765,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2cf62a64b7e0eb4aa2ff36bcb290bb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axisController: {fileID: 2095916306}
-  horizontal: Mouse X
-  vertical: Mouse Y
+  RotationInputProvider: {fileID: 2095916306}
 --- !u!114 &2095916305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2047,6 +2045,6 @@ SceneRoots:
   - {fileID: 1935133246}
   - {fileID: 2031228884}
   - {fileID: 1447565058}
-  - {fileID: 1431236005}
   - {fileID: 2095916311}
   - {fileID: 1187227713}
+  - {fileID: 1431236005}
