@@ -205,7 +205,7 @@ public class DiceController : MonoBehaviour
     }
     public void readDie()
     {
-        if (Physics.Raycast(transform.position, Vector3.up, out RaycastHit hit, 2f))
+        if (Physics.Raycast(transform.position, Vector3.up, out RaycastHit hit, 2f, selectionMask))
         {
             string face = hit.collider.gameObject.name;
 
