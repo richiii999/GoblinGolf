@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Hole : MonoBehaviour{
     public GameObject nextHoleButton; // NextHole button (in UI prefab)
@@ -17,6 +18,8 @@ public class Hole : MonoBehaviour{
 
             if (!nextHoleButton) { Debug.LogError("nextHoleButton not found!"); }
         }
+
+        if (nextHoleButton) nextHoleButton.GetComponent<ButtonHandler>().level = nextHole; // Set nextHole of the button to the same one as this Script
     }
 
     public void OnTriggerEnter(Collider other){ if (other.tag == "Golf Ball") HoleComplete(); }
