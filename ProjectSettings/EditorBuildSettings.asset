@@ -9,8 +9,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Ind_Alexiz/MainMenu.unity
     guid: b75ac7d466e1ab044a6c5865cec93c04
   - enabled: 1
-    path: Assets/Scenes/Ind_Richard/Level1.unity
+    path: Assets/Scenes/Ind_Richard/RichardLevel1.unity
     guid: c476d204965f19a41921576a4b7e8949
+  - enabled: 1
+    path: Assets/Scenes/Ind_Alexiz/EasyLevel1.unity
+    guid: 4343d8395a59d214eb7d03e49c6be2af
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

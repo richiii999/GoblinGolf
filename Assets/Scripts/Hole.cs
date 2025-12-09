@@ -1,35 +1,29 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Hole : MonoBehaviour{
+    public GameObject nextHoleButton; // NextHole button (in UI prefab)
     public string nextHole = "MainMenu"; // What is the next hole? 
-    public int waitTime = 5; // How long to wait when hole is complete?
 
     void Start(){
         if (SceneUtility.GetBuildIndexByScenePath(nextHole) == -1) {
-            Debug.Log("Invalid nextHole, using 'MainMenu' instead");
+            Debug.LogWarning("Invalid nextHole, using 'MainMenu' instead");
             nextHole = "MainMenu";
         }
 
-        
+        if (!nextHoleButton) { 
+            Debug.LogWarning("nextHoleButton not set, attempting search");
+            nextHoleButton = GameObject.Find("UI/UI_Canvas/NextHole"); 
+
+            if (!nextHoleButton) { Debug.LogError("nextHoleButton not found!"); }
+        }
+
+        if (nextHoleButton) nextHoleButton.GetComponent<ButtonHandler>().level = nextHole; // Set nextHole of the button to the same one as this Script
     }
 
-    public void OnTriggerEnter(Collider other){ if (other.tag == "Golf Ball") StartCoroutine(HoleComplete()); }
+    public void OnTriggerEnter(Collider other){ if (other.tag == "Golf Ball") HoleComplete(); }
 
-    IEnumerator HoleComplete(){
-        Debug.Log("Hole!");
-        Renderer M = GetComponent<Renderer>();
-        M.material.SetColor("_Color", Color.red); // BUG: not working
-        
-
-        // Display Strokes on screen
-        // asdf
-        
-        // Wait for a few sec
-        yield return new WaitForSeconds(waitTime);
-
-        // Load next scene (or MainMenu if no next hole is set)
-        SceneManager.LoadSceneAsync(nextHole);
-    }
+    void HoleComplete() { if (nextHoleButton) nextHoleButton.SetActive(true); }
+    
 }
