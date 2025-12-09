@@ -3,8 +3,8 @@ using System.Collections;
 
 public class ResizeBall : MonoBehaviour
 {
-    public Vector3 sizeUp = new Vector3(3f, 3f, 3f);
-    public Vector3 sizeDown = new Vector3(1f, 1f, 1f);
+    //public Vector3 sizeUp = new Vector3(3f, 3f, 3f);
+    //public Vector3 sizeDown = new Vector3(1f, 1f, 1f);
     Rigidbody rb;
     public GameObject MagicCircle;
     public Transform player;
@@ -39,6 +39,7 @@ public class ResizeBall : MonoBehaviour
 
     public void Grow()
     {
+        Vector3 sizeUp = new Vector3((originalSize.x * 4), (originalSize.y * 4), (originalSize.z * 4));
         active = true;
         transform.localScale = sizeUp;
         rb.mass = 1.5f;
@@ -49,6 +50,7 @@ public class ResizeBall : MonoBehaviour
 
     public void Shrink()
     {
+        Vector3 sizeDown = new Vector3((originalSize.x / 2), (originalSize.y / 2), (originalSize.z / 2));
         active = true;
         transform.localScale = sizeDown;
         rb.mass = 0.2f;
