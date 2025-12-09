@@ -286,17 +286,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 59c2981b6ec20634bad2811268873336, type: 3}
   m_PrefabInstance: {fileID: 315478005}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &644935920 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1860817836983863736, guid: 4a2b739663a6cc44984f6fe9c128541a, type: 3}
-  m_PrefabInstance: {fileID: 1078301844}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b8e416ad18d2aa4a9a7944a25ee2a1b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &889017434
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -770,10 +759,6 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.10459247
       objectReference: {fileID: 0}
-    - target: {fileID: 7827262650573715162, guid: 41f3b579dec0d8348ab84e14a034dc08, type: 3}
-      propertyPath: DiceHandler
-      value: 
-      objectReference: {fileID: 644935920}
     - target: {fileID: 7827262650573715162, guid: 41f3b579dec0d8348ab84e14a034dc08, type: 3}
       propertyPath: ScoreHandler
       value: 
