@@ -5,9 +5,10 @@ using UnityEngine.InputSystem;
 public class DiceController : MonoBehaviour
 {
     [SerializeField] private float shotPower;
-    [SerializeField] private float stopVelocity = .05f;
+    [SerializeField] private float stopVelocity = .001f;
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private PlayerInput playerInput;
+    [SerializeField] private new GameObject gameObject;
 
     private InputAction aimAction, pointerAction;
 
@@ -164,6 +165,9 @@ public class DiceController : MonoBehaviour
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         isIdle = true;
+        gameObject.GetComponent<Float>().AbilityOff();
+        gameObject.GetComponent<PhaseAlt>().Phase(false);
+        gameObject.GetComponent<ResizeBall>().returnToBase();
         readDie();
     }
     public void readDie()
@@ -175,6 +179,31 @@ public class DiceController : MonoBehaviour
             if (face.StartsWith("Face"))
             {
                 currentNumber = int.Parse(face.Substring(4));
+                
+                //To determine Ability Use
+                if (currentNumber <= 4)
+                {
+                    gameObject.GetComponent<PhaseAlt>().SetPhaseFlag("PhaseObjectBad");
+                    gameObject.GetComponent<PhaseAlt>().Phase(true);
+                }
+                if (currentNumber >= 5 && currentNumber <= 8)
+                {
+                    gameObject.GetComponent<ResizeBall>().Grow();
+                }
+                if (currentNumber >= 9 && currentNumber <= 12)
+                {
+                    gameObject.GetComponent<Float>().AbilityOn();
+                }
+                if (currentNumber >= 13 && currentNumber <= 16)
+                {
+                    gameObject.GetComponent<ResizeBall>().Shrink();
+                }
+                if (currentNumber >= 17 && currentNumber <= 20)
+                {
+                    gameObject.GetComponent<PhaseAlt>().SetPhaseFlag("Phase Object");
+                    gameObject.GetComponent<PhaseAlt>().Phase(true);
+                }
+
                 //Debug.Log(currentNumber);
                 DiceHandler.UpdateDice(currentNumber);
             }
