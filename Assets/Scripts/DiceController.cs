@@ -1,5 +1,3 @@
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,6 +16,11 @@ public class DiceController : MonoBehaviour
 
     private InputAction aimAction, pointerAction;
     public Vector3[] positions; // Positions is saved between shots (for use in PowerSlider)
+
+    public Vector3 lastShotPos; // Save the last shot's position (to allow reset)
+    public Vector3 currShotPos;
+    public Quaternion lastShotRot;
+    public Quaternion currShotRot;
 
     private bool isIdle;
     private bool isAiming;
@@ -188,9 +191,6 @@ public class DiceController : MonoBehaviour
         positions[0] = transform.position;
         positions[1] = worldPoint; // Start the ball's position and the end is the aim point
 
-        Debug.Log(worldPoint);
-        Debug.Log(transform.position);
-
         lineRenderer.SetPositions(positions); // Update LineRenderer positions
         lineRenderer.enabled = true; // Ensure line is visible
     }
@@ -209,7 +209,14 @@ public class DiceController : MonoBehaviour
             gameObject.GetComponent<ResizeBall>().returnToBase();
         }
         readDie();
+
+        // Save the shot's position and rotation (to allow reset)
+        lastShotPos = currShotPos;
+        lastShotRot = currShotRot;
+        currShotPos = transform.position;
+        currShotRot = transform.rotation;
     }
+
     public void readDie()
     {
         if (Physics.Raycast(transform.position, Vector3.up, out RaycastHit hit, 2f, selectionMask))
