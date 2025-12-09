@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PhaseAlt : MonoBehaviour{
@@ -13,9 +14,9 @@ public class PhaseAlt : MonoBehaviour{
 
     private GameObject[] phaseObjects;
 
-    void Start(){
+    public void SetPhaseFlag(string phaseTag)
+    {
         phaseObjects = GameObject.FindGameObjectsWithTag(phaseTag); // Get all phase objects in the scene
-        Phase(false); // Phase objects are solid to start
     }
 
     void Update(){
@@ -26,11 +27,18 @@ public class PhaseAlt : MonoBehaviour{
     }
 
     public void Phase(bool onOrOff){ // Disables collision and makes objects transparent
-        foreach(GameObject PO in phaseObjects){
-            PO.GetComponent<Collider>().isTrigger = onOrOff;
-            
-            Material M = PO.GetComponent<Renderer>().material;
-            M.color = new Color( M.color.r, M.color.g, M.color.b, onOrOff ? 0.5f : 1.0f ); // r,g,b,a
+
+        if(phaseObjects != null)
+        {
+            foreach(GameObject PO in phaseObjects){
+                if (PO != null)
+                {
+                    PO.GetComponent<Collider>().isTrigger = onOrOff;
+                    
+                    Material M = PO.GetComponent<Renderer>().material;
+                    M.color = new Color( M.color.r, M.color.g, M.color.b, onOrOff ? 0.5f : 1.0f ); // r,g,b,a
+                }
+            }
         }
     }
 }

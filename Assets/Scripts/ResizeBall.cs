@@ -24,6 +24,7 @@ public class ResizeBall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if (Input.GetKeyDown("q")){
             Grow();
         }
@@ -34,7 +35,7 @@ public class ResizeBall : MonoBehaviour
         if (active && Time.time >= durationEnd)
         {
             returnToBase();
-        }
+        }*/
     }
 
     public void Grow()
