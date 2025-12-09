@@ -64,8 +64,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5276103423134875776}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.18115944, y: -0.48893806, z: 0.10459245, w: 0.8468656}
-  m_LocalPosition: {x: 10.172251, y: 7.1238413, z: 0.9508164}
+  m_LocalRotation: {x: -0.042466562, y: 0.9325669, z: -0.3389116, w: -0.11685321}
+  m_LocalPosition: {x: 6.889305, y: 10.225836, z: 10.366504}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -137,18 +137,18 @@ MonoBehaviour:
   Radius: 5
   Orbits:
     Top:
-      Radius: 1
-      Height: 5.95
+      Radius: 10
+      Height: 6
     Center:
-      Radius: 5.32
-      Height: 4.69
+      Radius: 10
+      Height: 5
     Bottom:
-      Radius: 5.02
-      Height: 1.04
+      Radius: 2
+      Height: 1
     SplineCurvature: 0.5
   RecenteringTarget: 2
   HorizontalAxis:
-    Value: -60
+    Value: -165.7158
     Center: 0
     Range: {x: -180, y: 180}
     Wrap: 1
@@ -158,7 +158,7 @@ MonoBehaviour:
       Time: 2
     Restrictions: 0
   VerticalAxis:
-    Value: 2
+    Value: 28.09907
     Center: 17.5
     Range: {x: -10, y: 45}
     Wrap: 0
@@ -262,7 +262,7 @@ MonoBehaviour:
         LegacyInput: 
         LegacyGain: 1
         CancelDeltaTime: 0
-      InputValue: 0
+      InputValue: -0
       Driver:
         AccelTime: 0.2
         DecelTime: 0.2
@@ -275,7 +275,7 @@ MonoBehaviour:
         LegacyInput: 
         LegacyGain: 1
         CancelDeltaTime: 0
-      InputValue: 0
+      InputValue: -0
       Driver:
         AccelTime: 0
         DecelTime: 0

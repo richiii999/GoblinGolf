@@ -929,7 +929,7 @@ MonoBehaviour:
   diePlaneMask:
     serializedVersion: 2
     m_Bits: 0
-  gameObject: {fileID: 0}
+  gameObject: {fileID: 2892836467430101007}
   stopped: 0
   abilityActivated: 0
   ScoreHandler: {fileID: 0}

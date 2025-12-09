@@ -49,6 +49,22 @@ public class DiceController : MonoBehaviour
         // When canceled call the OnAimReleased method
         aimAction.performed += OnAimPressed;
         aimAction.canceled += OnAimReleased;
+
+        // Check if linked components are set or not
+        if (!ScoreHandler){
+            Debug.LogWarning("ScoreHandler not set, attempting search");
+            ScoreHandler = GameObject.Find("UI/UI_Canvas/Score").GetComponent<ScoreManager>(); 
+
+            if (!ScoreHandler) { Debug.LogError("ScoreHandler not found!"); }
+        }
+
+        if (!DiceHandler){
+            Debug.LogWarning("DiceHandler not set, attempting search");
+            DiceHandler = GameObject.Find("UI/UI_Canvas/D20/Number").GetComponent<DiceNumber>(); 
+
+            if (!DiceHandler) { Debug.LogError("DiceHandler not found!"); }
+        }
+
     }
 
     private void OnDestroy()
