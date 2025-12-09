@@ -8,6 +8,8 @@ public class DiceController : MonoBehaviour
     [SerializeField] private float stopVelocity = .05f;
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private PlayerInput playerInput;
+    [SerializeField] private LayerMask diePlaneMask;
+    private LayerMask selectionMask;
 
     private InputAction aimAction, pointerAction;
 
@@ -22,6 +24,12 @@ public class DiceController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        
+        int diePlaneLayer = LayerMask.NameToLayer("DiePlane");
+        diePlaneMask = 1 << diePlaneLayer;
+        int everythingExceptDiePlane = ~(1 << diePlaneLayer);
+        selectionMask = everythingExceptDiePlane;
+        
         lineRenderer.enabled = false;
         isAiming = false;
         isIdle = true;
@@ -87,7 +95,7 @@ public class DiceController : MonoBehaviour
 
         RaycastHit hit;
         // Raycast using the pointer position
-        if (Physics.Raycast(ray, out hit, 100f))
+        if (Physics.Raycast(ray, out hit, 100f, selectionMask))
         {
             // Check if the ray hit this object's collider
             return hit.collider != null && hit.collider.gameObject == gameObject;
@@ -150,9 +158,9 @@ public class DiceController : MonoBehaviour
     private void DrawLine(Vector3 worldPoint)
     {
         // Set clamped point so the line doesn't hit the wall/floor/etc
-        Vector3 clampedPoint = new Vector3(worldPoint.x, transform.position.y, worldPoint.z);
+        //Vector3 clampedPoint = new Vector3(worldPoint.x, transform.position.y, worldPoint.z);
         // Draw the line from ball to cursor target
-        Vector3[] positions = { transform.position, clampedPoint }; // Start the ball's position and the end is the aim point
+        Vector3[] positions = { transform.position, worldPoint }; // Start the ball's position and the end is the aim point
         lineRenderer.SetPositions(positions); // Update LineRenderer positions
         lineRenderer.enabled = true; // Ensure line is visible
     }
@@ -194,7 +202,7 @@ public class DiceController : MonoBehaviour
         
         RaycastHit hit;
         // Perform a raycast in the direction of the ray
-        if (Physics.Raycast(ray, out hit, 100f))
+        if (Physics.Raycast(ray, out hit, 100f, diePlaneMask))
         {
             // If collider is hit return the point in world space where it hit
             return hit.point;
