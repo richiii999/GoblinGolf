@@ -191,9 +191,6 @@ public class DiceController : MonoBehaviour
         positions[0] = transform.position;
         positions[1] = worldPoint; // Start the ball's position and the end is the aim point
 
-        Debug.Log(worldPoint);
-        Debug.Log(transform.position);
-
         lineRenderer.SetPositions(positions); // Update LineRenderer positions
         lineRenderer.enabled = true; // Ensure line is visible
     }
