@@ -361,9 +361,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2121246927781811107, guid: 4a2b739663a6cc44984f6fe9c128541a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4226264014887631414, guid: 4a2b739663a6cc44984f6fe9c128541a, type: 3}
       propertyPath: m_Name
       value: UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 4900579303393047724, guid: 4a2b739663a6cc44984f6fe9c128541a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8653032782298794271, guid: 4a2b739663a6cc44984f6fe9c128541a, type: 3}
+      propertyPath: level
+      value: Armoni
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2502,7 +2514,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8235959373571526819, guid: 0edbc4e38b9e526428dc51241391d3f4, type: 3}
       propertyPath: nextHole
-      value: EasyLevel1
+      value: Venkata 1
       objectReference: {fileID: 0}
     - target: {fileID: 8235959373571526819, guid: 0edbc4e38b9e526428dc51241391d3f4, type: 3}
       propertyPath: waitTime

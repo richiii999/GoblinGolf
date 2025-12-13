@@ -9,11 +9,26 @@ EditorBuildSettings:
     path: Assets/Scenes/Ind_Alexiz/MainMenu.unity
     guid: b75ac7d466e1ab044a6c5865cec93c04
   - enabled: 1
-    path: Assets/Scenes/Ind_Richard/RichardLevel1.unity
-    guid: c476d204965f19a41921576a4b7e8949
-  - enabled: 1
     path: Assets/Scenes/Ind_Alexiz/EasyLevel1.unity
     guid: caad5716188d560499c106cdca092f4d
+  - enabled: 1
+    path: Assets/Scenes/Ind_Richard/RichardLevel1.unity
+    guid: c476d204965f19a41921576a4b7e8949
+  - enabled: 0
+    path: Assets/Scenes/Ind_Armoni/Armoni.unity
+    guid: 1e92705777742a94cb399ec325fd5135
+  - enabled: 0
+    path: Assets/Scenes/Ind_Venkata/Venkata.unity
+    guid: 8e4db20b844291b4aaa00ee6d5008268
+  - enabled: 1
+    path: Assets/Scenes/Ind_Venkata/Venkata 1.unity
+    guid: c4d8cf2833ef8634e8421e0564a5521c
+  - enabled: 1
+    path: Assets/Scenes/Ind_Venkata/Venkata 2.unity
+    guid: 2d078ebaabd25e94dbee836208dbd2d5
+  - enabled: 1
+    path: Assets/Scenes/Ind_Venkata/Venkata 3.unity
+    guid: ed107e15b5e9c1845ad5b94be58315ea
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

@@ -48,7 +48,7 @@ public class DiceController : MonoBehaviour
 
     private void Start()
     {
-        rb.sleepThreshold = 0.3f;
+        rb.sleepThreshold = 0.5f;
         aimAction = playerInput.actions["Aim"];
         pointerAction = playerInput.actions["PointerPosition"];
 
