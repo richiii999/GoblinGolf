@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 public class DiceController : MonoBehaviour
 {
     [SerializeField] private float shotPower;
-    [SerializeField] private float stopVelocity = .001f;
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private PlayerInput playerInput;
     [SerializeField] private LayerMask diePlaneMask;
@@ -25,12 +24,13 @@ public class DiceController : MonoBehaviour
     private bool isIdle;
     private bool isAiming;
     private Rigidbody rb;
+    private bool stopHandled = false;
 
     public ScoreManager ScoreHandler;
     public DiceNumber DiceHandler;
     private int currentNumber;
     private int stroke;
-    private bool wasIdle = true;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -82,22 +82,16 @@ public class DiceController : MonoBehaviour
 
     private void Update()
     {
-        // Checks if currently idle by checking if the linear velocity is less than the stopVelocity
-        bool currentlyIdle = rb.linearVelocity.magnitude < stopVelocity;
+        ProcessAim();
+    }
 
-        // If the dice is not moving and it was moving before we call Stop()
-        if (currentlyIdle && !wasIdle)
+    private void FixedUpdate()
+    {
+        if (rb.IsSleeping() && !stopHandled)
         {
+            stopHandled = true;
             Stop();
         }
-        
-        // Sets the isIdle variable to what the currently idle variable is
-        // This updates isIdle every frame for reference for other functions
-        // We also set the wasIdle variable every frame
-        isIdle = currentlyIdle;
-        wasIdle = currentlyIdle;
-
-        ProcessAim();
     }
 
     private void OnAimPressed(InputAction.CallbackContext context)
@@ -158,6 +152,9 @@ public class DiceController : MonoBehaviour
 
     private void Shoot(Vector3 worldPoint)
     {
+        stopHandled = false;
+        rb.WakeUp();
+
         isAiming = false; // Exit aiming state
         lineRenderer.enabled = false; // Hide the line
         stroke++; // Update the score/stroke
