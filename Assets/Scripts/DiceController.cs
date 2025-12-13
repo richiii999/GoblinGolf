@@ -11,6 +11,7 @@ public class DiceController : MonoBehaviour
     [SerializeField] private new GameObject gameObject;
     [SerializeField] private bool stopped = false;
     [SerializeField] private bool abilityActivated = false;
+    private float stopVelocity = 0.01f;
     
 
     private InputAction aimAction, pointerAction;
@@ -47,6 +48,7 @@ public class DiceController : MonoBehaviour
 
     private void Start()
     {
+        rb.sleepThreshold = 0.3f;
         aimAction = playerInput.actions["Aim"];
         pointerAction = playerInput.actions["PointerPosition"];
 
