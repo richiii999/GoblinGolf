@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class DiceController : MonoBehaviour
 {
-    [SerializeField] private float shotPower;
+    [SerializeField] private float shotPower = 150;
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private PlayerInput playerInput;
     [SerializeField] private LayerMask diePlaneMask;
