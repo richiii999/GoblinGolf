@@ -48,7 +48,7 @@ public class DiceController : MonoBehaviour
 
     private void Start()
     {
-        rb.sleepThreshold = 0.5f;
+        rb.sleepThreshold = 1f;
         aimAction = playerInput.actions["Aim"];
         pointerAction = playerInput.actions["PointerPosition"];
 
@@ -71,6 +71,8 @@ public class DiceController : MonoBehaviour
 
             if (!DiceHandler) { Debug.LogError("DiceHandler not found!"); }
         }
+
+        Stop();
     }
 
     private void OnDestroy()
@@ -194,7 +196,7 @@ public class DiceController : MonoBehaviour
         lineRenderer.enabled = true; // Ensure line is visible
     }
 
-    private void Stop()
+    public void Stop()
     {
         Debug.Log("Stopped");
         rb.linearVelocity = Vector3.zero;

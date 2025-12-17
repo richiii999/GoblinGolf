@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ResetShot : MonoBehaviour{
+public class StopBall : MonoBehaviour{
 
     public GameObject ball; // The golf ball "D20_Faces" object
     public DiceController diceController; // The ball's DiceController script
@@ -21,9 +21,7 @@ public class ResetShot : MonoBehaviour{
         }
     }
 
-    public void ResetBall() { 
-        ball.transform.position = diceController.lastShotPos;
-        ball.transform.rotation = diceController.lastShotRot;
+    public void Stop() { 
         diceController.Stop();
     }
 }
